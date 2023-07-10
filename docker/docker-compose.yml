@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  react:
+    container_name: next_AB_Template
+    hostname: next_AB_Template
+    build:
+      context: ../
+      dockerfile: ./docker/dockerfile
+      target: development
+    volumes:
+      - ${REACT_DIR}:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${REACT_PORT}:${REACT_PORT}
+    command: sleep infinity
