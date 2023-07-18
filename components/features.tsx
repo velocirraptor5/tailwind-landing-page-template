@@ -11,6 +11,7 @@ import {
   BiSearch,
   BiSolidChevronDown,
 } from 'react-icons/bi';
+import Cube from './utils/cube';
 
 export default function Features() {
   const { shirtColor, setShirtColor } = useContext(MyContext);
@@ -447,21 +448,7 @@ export default function Features() {
                       </a>
                     </div>
                   </div>
-                  {/* Cube */}
-                  <div className="flex justify-center items-center ml-3 ">
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                      href=""
-                    >
-                      <FaCube
-                        className={`h4 transition duration-500 text-gray-500 hover:${
-                          isDark ? 'text-white' : 'text-black'
-                        }`}
-                      />
-                    </a>
-                  </div>
+                  <Cube isDark={isDark} />
                 </div>
               </div>
             </div>
