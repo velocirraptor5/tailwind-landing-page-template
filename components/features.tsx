@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
-import PandaImage from '@/public/images/_fa334aad-c073-43b4-9c78-8c57c98e3621.jpg';
 import { MyContext } from '@/contexts/MyContext';
 import { FaCube, FaCubes } from 'react-icons/fa';
 import {
@@ -28,22 +27,14 @@ export default function Features() {
   const [artStile, setArtStile] = useState('Digital Art');
   const [isArtFocused, setArtFocused] = useState(false);
 
-  const [tab, setTab] = useState<number>(1);
+  const images = [
+    { id: 1, src: '/images/_fa334aad-c073-43b4-9c78-8c57c98e3621.jpg' },
+    { id: 2, src: '/images/_3f7c7b5d-8686-4fab-a528-bb6b29518aab.jpg' },
+    { id: 3, src: '/images/_8eaf0f7a-c515-4339-8ff6-dfdfe2bbac9a.jpg' },
+    { id: 4, src: '/images/_f5f87b4f-ea75-4e0f-b3c7-1af58dafabc9.jpg' },
+  ];
 
-  const tabs = useRef<HTMLDivElement>(null);
-
-  const heightFix = () => {
-    if (tabs.current && tabs.current.parentElement)
-      tabs.current.parentElement.style.height = `${tabs.current.clientHeight}px`;
-  };
-
-  useEffect(() => {
-    heightFix();
-  }, []);
-
-  const makeRandom = () => {
-    return;
-  };
+  const [selectedImage, setSelectedImage] = useState(images[0]);
 
   const isDark = ['black'].includes(shirtColor);
 
@@ -477,27 +468,109 @@ export default function Features() {
 
             {/* Images */}
             <div className="col-span-6 ">
-              <div className="flex aspect-square  justify-center align-middle">
-                <Image
-                  className="mx-auto rounded"
-                  src={PandaImage}
-                  // width={500}
-                  // height="462"
-                  alt="Panda driving"
-                />
-                {/* pum pum pam pum pum ... pammmm  */}
-                {/*  */}
+              {/* <div className="flex aspect-square  justify-center align-middle">
+                
+              </div> */}
+
+              <div>
+                <Transition
+                  show={true}
+                  enter="transition ease-out duration-300 transform"
+                  enterFrom="opacity-0 scale-95 translate-y-full"
+                  enterTo="opacity-100 scale-100 translate-y-0"
+                  leave="transition ease-in duration-200 transform shrink"
+                  leaveFrom="opacity-100 scale-100 translate-y-0"
+                  leaveTo="opacity-0 scale-95 translate-y-full"
+                >
+                  {(ref) => (
+                    <div ref={ref}>
+                      <Image
+                        src={selectedImage.src}
+                        width={500}
+                        height={500}
+                        alt="selcted"
+                      />
+                    </div>
+                  )}
+                </Transition>
+              </div>
+              <div>
+                {images.map((image) => (
+                  <button
+                    key={image.id}
+                    onClick={() => setSelectedImage(image)}
+                    style={{
+                      border: 'none',
+                      margin: '10px',
+                      padding: '0',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <Transition
+                      show={selectedImage.id !== image.id}
+                      enter="transition ease-out duration-300 transform"
+                      enterFrom="opacity-0 scale-95 translate-y-full"
+                      enterTo="opacity-100 scale-100 translate-y-0"
+                      leave="transition ease-in duration-200 transform shrink"
+                      leaveFrom="opacity-100 scale-100 translate-y-0"
+                      leaveTo="opacity-0 scale-95 translate-y-full"
+                    >
+                      {(ref) => (
+                        <div ref={ref}>
+                          <Image
+                            src={image.src}
+                            width={150}
+                            height={150}
+                            alt="preview"
+                          />
+                        </div>
+                      )}
+                    </Transition>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
         </div>
       </div>
+      {/* <Transition
+                  show={!!selectedImage}
+                  enter="transition-all duration-500 ease-in-out"
+                  enterFrom="transform scale-y-0 translate-y-full"
+                  enterTo="transform scale-y-100 translate-y-0"
+                  leave="transition-all duration-500 ease-in-out"
+                  leaveFrom="transform scale-y-100 translate-y-0"
+                  leaveTo="transform scale-y-0 translate-y-full"
+                >
+                  <img
+                    src={selectedImage.src}
+                    alt={`Selected image ${selectedImage.id}`}
+                    className="max-h-full max-w-full"
+                  />
+                </Transition>
+  
+                <div className="flex flex-wrap justify-center">
+                  {images.map((image) => (
+                    <img
+                      key={image.id}
+                      src={image.src}
+                      alt={`Image ${image.id}`}
+                      className={`w-32 h-32 m-2 cursor-pointer ${
+                        selectedImage.id === image.id
+                          ? 'border-red-500 border-4'
+                          : ''
+                      }`}
+                      onClick={() => setSelectedImage(image)}
+                    />
+                  ))}
+                </div> */}
       {/* ghost elementes */}
       {/* es importante esta parte debido a que hay momentos en que el css no es carga adecuadamente en los condicionales de antes y esto fuerza a cargar todas las variantes */}
       <input className="hover:border-white focus:border-white" hidden={true} />
       <input className="hover:border-black focus:border-black" hidden={true} />
       <a href="" hidden={true}>
-        <FaCube className={'text-gray-500 hover:text-white hover:text-black'} />
+        <FaCube className={'text-gray-500 hover:text-white'} />
+        <FaCube className={'text-gray-500 hover:text-black'} />
         {/* <BiSolidChevronDown
           className={`h4 transform rotate-180 transition duration-500 ease-in-out text-gray-500  `}
         />
