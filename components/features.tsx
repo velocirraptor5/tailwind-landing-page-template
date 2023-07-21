@@ -5,6 +5,7 @@ import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { MyContext } from '@/contexts/MyContext';
 import { FaCube, FaCubes } from 'react-icons/fa';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
   BiAddToQueue,
   BiPlusCircle,
@@ -46,7 +47,7 @@ export default function Features() {
         className={`absolute inset-0  pointer-events-none mb-16`}
         aria-hidden="true"
       ></div>
-      <div className="absolute left-0 right-0 m-auto w-px p-px h-20 bg-blue-600 transform -translate-y-1/2"></div>
+      <div className="absolute left-0 right-0 m-auto w-px p-px h-20 bg-blue-200 transform -translate-y-1/2"></div>
 
       <div className={`mx-auto px-4 sm:px-6`}>
         <div
@@ -58,25 +59,20 @@ export default function Features() {
             } 
             `}
         >
-          {/* Section header */}
-          <p className="text-sm text-gray-600 mx-3">
-            crea tu diseño con ayuda de una IA.
-          </p>
-
           {/* Section Content */}
-          <div className="md:grid grid-cols-9 gap-4 mx-3">
+          <div className="md:grid grid-cols-9 gap-4">
             {/* Form */}
             <div
-              className="col-span-3 flex-col items-center"
+              className={`col-span-3 flex flex-col align-middle justify-center ml-10 transition duration-500 `}
               data-aos="fade-right"
             >
               {/* Color */}
-              <div className="grid grid-cols-2 mb-5">
+              <div className="grid grid-cols-2 mb-5 transition duration-500">
                 {/* Title and buttons */}
                 <div>
                   {/* Title */}
                   <h2
-                    className={`h2 transition duration-500 ${
+                    className={`h3 transition duration-500 ${
                       isDark ? 'text-white' : ''
                     }`}
                   >
@@ -119,13 +115,13 @@ export default function Features() {
               {/* Character */}
               <div className="mb-5">
                 {/* Title */}
-                <h2
-                  className={`h2 transition duration-500 ${
+                <h3
+                  className={`h3 transition duration-500 ${
                     isDark ? 'text-white' : ''
                   }`}
                 >
                   Personaje u Objeto
-                </h2>
+                </h3>
                 {/* Character N */}
                 <div className="">
                   {/* Input */}
@@ -163,39 +159,20 @@ export default function Features() {
                           onBlur={() => setCharFocused(false)}
                           href=""
                         >
-                          {charMenu ? (
-                            <BiSolidChevronDown
-                              className={`h4 transform rotate-180 transition duration-500 ease-in-out text-gray-500 hover:${
-                                isDark ? 'text-white' : 'text-black'
-                              } `}
-                            />
-                          ) : (
-                            <BiSolidChevronDown
-                              className={`h4 transform rotate-0 transition duration-500 ease-in-out text-gray-500 hover:${
-                                isDark ? 'text-white' : 'text-black'
-                              } `}
-                            />
-                          )}
+                          <BiSolidChevronDown
+                            className={`h4 transform ${
+                              charMenu ? 'rotate-180' : 'rotate-0'
+                            } transition duration-500 ease-in-out text-gray-500 hover:${
+                              isDark ? 'text-white' : 'text-black'
+                            } `}
+                          />
                         </a>
                       </div>
                     </div>
                     {/* Cube */}
-                    <div className="flex justify-center items-center mx-3 ">
-                      <a
-                        onClick={(e) => {
-                          e.preventDefault();
-                        }}
-                        href=""
-                      >
-                        <FaCube
-                          className={`h4 transition duration-500 ${
-                            isDark ? 'text-white' : ''
-                          }`}
-                        />
-                      </a>
-                    </div>
+                    <Cube isDark={isDark} />
                     {/* Plus */}
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center items-center ml-3">
                       <a
                         onClick={(e) => {
                           e.preventDefault();
@@ -211,31 +188,14 @@ export default function Features() {
                     </div>
                   </div>
                   {/* Menu */}
-                  <Transition
-                    appear={true}
-                    show={charMenu}
-                    enter="transition-opacity duration-900 transform -translate-y-full opacity-0"
-                    enterFrom="opacity-0 transform -translate-y-full"
-                    enterTo="opacity-100 transform translate-y-0"
-                    leave="transition-opacity duration-900 "
-                    leaveFrom="opacity-100 transform "
-                    leaveTo="opacity-0 transform "
-                  >
-                    {/* SearchInput and InsertImage */}
-                    <div
-                      className={`shadow-md border-2 rounded-lg transition duration-500 ${
-                        isDark ? 'text-white' : ''
-                      } hover:${isDark ? 'border-white' : 'border-black '}  ${
-                        isCharFocused
-                          ? isDark
-                            ? 'border-white'
-                            : 'border-black'
-                          : 'border-gray-500'
-                      }`}
-                    >
-                      {/* Input and SearchIcon */}
-                      <div
-                        className={`flex m-3 shadow-md border-2 rounded-lg transition duration-500 ${
+                  <AnimatePresence>
+                    {charMenu && (
+                      <motion.div
+                        initial={{ height: 0 }}
+                        animate={{ height: 'auto' }}
+                        exit={{ height: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className={`shadow-md border-2 rounded-lg transition duration-500 overflow-hidden ${
                           isDark ? 'text-white' : ''
                         } hover:${isDark ? 'border-white' : 'border-black '}  ${
                           isCharFocused
@@ -245,41 +205,12 @@ export default function Features() {
                             : 'border-gray-500'
                         }`}
                       >
-                        {/* Input */}
-                        <input
-                          type="text"
-                          className={`text-xl bg-transparent w-full border-none transition duration-500 focus:ring-transparent
-                          ${isDark ? 'text-white' : ''}`}
-                          onFocus={() => setCharFocused(true)}
-                          onBlur={() => setCharFocused(false)}
-                          value={charSearch}
-                          onChange={(e) => setCharSearch(e.target.value)}
-                        />
-                        {/* Search */}
-                        <div className="flex justify-center items-center">
-                          <a
-                            onClick={(e) => {
-                              e.preventDefault();
-                            }}
-                            href=""
-                          >
-                            <BiSearch
-                              className={`h4 transition duration-500 text-gray-500 hover:${
-                                isDark ? 'text-white' : 'text-black'
-                              }`}
-                            />
-                          </a>
-                        </div>
-                      </div>
-                      {/* Insert image */}
-                      <div className="grid grid-cols-2 ">
-                        <a
-                          className={`mb-3 mx-3 flex justify-center items-center border-2 border-dotted aspect-square transition duration-500 text-gray-500 ${
-                            isDark ? 'text-white bg-gray-700' : 'bg-gray-200'
+                        {/* Input and SearchIcon */}
+                        <div
+                          className={`flex m-3 shadow-md border-2 rounded-lg transition duration-500 ${
+                            isDark ? 'text-white' : ''
                           } hover:${
-                            isDark
-                              ? 'border-white text-white'
-                              : 'border-black text-black'
+                            isDark ? 'border-white' : 'border-black '
                           }  ${
                             isCharFocused
                               ? isDark
@@ -287,36 +218,82 @@ export default function Features() {
                                 : 'border-black'
                               : 'border-gray-500'
                           }`}
-                          onClick={(e) => {
-                            e.preventDefault();
-                          }}
-                          href=""
                         >
-                          <BiAddToQueue
-                            className={`h4 transition duration-500`}
+                          {/* Input */}
+                          <input
+                            type="text"
+                            className={`text-xl bg-transparent w-full border-none transition duration-500 focus:ring-transparent
+                          ${isDark ? 'text-white' : ''}`}
+                            onFocus={() => setCharFocused(true)}
+                            onBlur={() => setCharFocused(false)}
+                            value={charSearch}
+                            onChange={(e) => setCharSearch(e.target.value)}
                           />
-                        </a>
-                        <div
-                          className={`mb-3 mx-3 border-2 transition duration-500 ${
-                            isCharFocused
-                              ? isDark
-                                ? 'border-white'
-                                : 'border-black'
-                              : 'border-gray-500'
-                          } hover:${isDark ? 'border-white' : 'border-black'} `}
-                        >
-                          b
+                          {/* Search */}
+                          <div className="flex justify-center items-center">
+                            <a
+                              onClick={(e) => {
+                                e.preventDefault();
+                              }}
+                              href=""
+                            >
+                              <BiSearch
+                                className={`h4 transition duration-500 text-gray-500 hover:${
+                                  isDark ? 'text-white' : 'text-black'
+                                }`}
+                              />
+                            </a>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </Transition>
+                        {/* Insert image */}
+                        <div className="grid grid-cols-2 ">
+                          <a
+                            className={`mb-3 mx-3 flex justify-center items-center border-2 border-dotted aspect-square transition duration-500 text-gray-500 ${
+                              isDark ? 'text-white bg-gray-700' : 'bg-gray-200'
+                            } hover:${
+                              isDark
+                                ? 'border-white text-white'
+                                : 'border-black text-black'
+                            }  ${
+                              isCharFocused
+                                ? isDark
+                                  ? 'border-white'
+                                  : 'border-black'
+                                : 'border-gray-500'
+                            }`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                            }}
+                            href=""
+                          >
+                            <BiAddToQueue
+                              className={`h4 transition duration-500`}
+                            />
+                          </a>
+                          <div
+                            className={`mb-3 mx-3 border-2 transition duration-500 ${
+                              isCharFocused
+                                ? isDark
+                                  ? 'border-white'
+                                  : 'border-black'
+                                : 'border-gray-500'
+                            } hover:${
+                              isDark ? 'border-white' : 'border-black'
+                            } `}
+                          >
+                            b
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </div>
               {/* Action */}
               <div className="mb-5">
                 {/* Title */}
                 <h2
-                  className={`h2 transition duration-500 ${
+                  className={`h3 transition duration-500 ${
                     isDark ? 'text-white' : ''
                   }`}
                 >
@@ -338,28 +315,14 @@ export default function Features() {
                       onChange={(e) => setAction(e.target.value)}
                     />
                   </div>
-                  {/* Cube */}
-                  <div className="flex justify-center items-center ml-3 ">
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                      href=""
-                    >
-                      <FaCube
-                        className={`h4 transition duration-500 text-gray-500 hover:${
-                          isDark ? 'text-white' : 'text-black'
-                        }`}
-                      />
-                    </a>
-                  </div>
+                  <Cube isDark={isDark} />
                 </div>
               </div>
               {/* Landscape */}
               <div className="mb-5">
                 {/* Title */}
                 <h2
-                  className={`h2 transition duration-500 ${
+                  className={`h3 transition duration-500 ${
                     isDark ? 'text-white' : ''
                   }`}
                 >
@@ -381,28 +344,14 @@ export default function Features() {
                       onChange={(e) => setLandscape(e.target.value)}
                     />
                   </div>
-                  {/* Cube */}
-                  <div className="flex justify-center items-center ml-3 ">
-                    <a
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                      href=""
-                    >
-                      <FaCube
-                        className={`h4 transition duration-500 text-gray-500 hover:${
-                          isDark ? 'text-white' : 'text-black'
-                        }`}
-                      />
-                    </a>
-                  </div>
+                  <Cube isDark={isDark} />
                 </div>
               </div>
               {/* Art stile */}
               <div className="mb-5">
                 {/* Title */}
                 <h2
-                  className={`h2 transition duration-500 ${
+                  className={`h4 transition duration-500 ${
                     isDark ? 'text-white' : ''
                   }`}
                 >
@@ -454,117 +403,77 @@ export default function Features() {
             </div>
 
             {/* Images */}
-            <div className="col-span-6 ">
-              {/* <div className="flex aspect-square  justify-center align-middle">
+            <div
+              className="col-span-6 flex justify-center"
+              data-aos="fade-left"
+            >
+              <div className="flex flex-col justify-center ">
+                {/* <div className="flex aspect-square  justify-center align-middle">
                 
               </div> */}
 
-              <div>
-                <Transition
-                  show={true}
-                  enter="transition ease-out duration-300 transform"
-                  enterFrom="opacity-0 scale-95 translate-y-full"
-                  enterTo="opacity-100 scale-100 translate-y-0"
-                  leave="transition ease-in duration-200 transform shrink"
-                  leaveFrom="opacity-100 scale-100 translate-y-0"
-                  leaveTo="opacity-0 scale-95 translate-y-full"
-                >
-                  {(ref) => (
-                    <div ref={ref}>
-                      <Image
-                        src={selectedImage.src}
-                        width={500}
-                        height={500}
-                        alt="selcted"
-                      />
-                    </div>
-                  )}
-                </Transition>
-              </div>
-              <div>
-                {images.map((image) => (
-                  <button
-                    key={image.id}
-                    onClick={() => setSelectedImage(image)}
-                    style={{
-                      border: 'none',
-                      margin: '10px',
-                      padding: '0',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <Transition
-                      show={selectedImage.id !== image.id}
-                      enter="transition ease-out duration-300 transform"
-                      enterFrom="opacity-0 scale-95 translate-y-full"
-                      enterTo="opacity-100 scale-100 translate-y-0"
-                      leave="transition ease-in duration-200 transform shrink"
-                      leaveFrom="opacity-100 scale-100 translate-y-0"
-                      leaveTo="opacity-0 scale-95 translate-y-full"
-                    >
-                      {(ref) => (
-                        <div ref={ref}>
+                <AnimatePresence>
+                  {images.map((image) => (
+                    <div>
+                      {image.id === selectedImage.id && (
+                        <motion.div
+                          initial={{ opacity: 0, x: 300 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -300 }}
+                        >
                           <Image
-                            src={image.src}
-                            width={150}
-                            height={150}
-                            alt="preview"
+                            width={600}
+                            height={600}
+                            src={selectedImage.src}
+                            alt="selected"
                           />
-                        </div>
+                        </motion.div>
                       )}
-                    </Transition>
-                  </button>
-                ))}
+                    </div>
+                  ))}
+                </AnimatePresence>
+
+                <div>
+                  {images.map((image) => (
+                    <button
+                      key={image.id}
+                      onClick={() => setSelectedImage(image)}
+                      style={{
+                        border: 'none',
+                        margin: '10px',
+                        padding: '0',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <AnimatePresence>
+                        {selectedImage.id !== image.id && (
+                          <motion.div
+                            key={image.id}
+                            initial={{ opacity: 0, width: 0 }}
+                            animate={{ opacity: 1, width: 'auto' }}
+                            exit={{ opacity: 0, width: 0 }}
+                          >
+                            <Image
+                              src={image.src}
+                              width={150}
+                              height={150}
+                              alt="preview"
+                            />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      {/* <Transition
-                  show={!!selectedImage}
-                  enter="transition-all duration-500 ease-in-out"
-                  enterFrom="transform scale-y-0 translate-y-full"
-                  enterTo="transform scale-y-100 translate-y-0"
-                  leave="transition-all duration-500 ease-in-out"
-                  leaveFrom="transform scale-y-100 translate-y-0"
-                  leaveTo="transform scale-y-0 translate-y-full"
-                >
-                  <img
-                    src={selectedImage.src}
-                    alt={`Selected image ${selectedImage.id}`}
-                    className="max-h-full max-w-full"
-                  />
-                </Transition>
-  
-                <div className="flex flex-wrap justify-center">
-                  {images.map((image) => (
-                    <img
-                      key={image.id}
-                      src={image.src}
-                      alt={`Image ${image.id}`}
-                      className={`w-32 h-32 m-2 cursor-pointer ${
-                        selectedImage.id === image.id
-                          ? 'border-red-500 border-4'
-                          : ''
-                      }`}
-                      onClick={() => setSelectedImage(image)}
-                    />
-                  ))}
-                </div> */}
       {/* ghost elementes */}
       {/* es importante esta parte debido a que hay momentos en que el css no es carga adecuadamente en los condicionales de antes y esto fuerza a cargar todas las variantes */}
       <input className="hover:border-white focus:border-white" hidden={true} />
       <input className="hover:border-black focus:border-black" hidden={true} />
-      <a href="" hidden={true}>
-        <FaCube className={'text-gray-500 hover:text-white'} />
-        <FaCube className={'text-gray-500 hover:text-black'} />
-        {/* <BiSolidChevronDown
-          className={`h4 transform rotate-180 transition duration-500 ease-in-out text-gray-500  `}
-        />
-        <BiSolidChevronUp
-          className={`h4 transform rotate-0 transition duration-500 ease-in-out text-gray-500 `}
-        /> */}
-      </a>
     </section>
   );
 }
