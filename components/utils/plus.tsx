@@ -23,18 +23,17 @@ export default function Plus({ isDark, ...props }: CubeProps) {
           whileTap={{
             scale: 0.8,
             rotate: -180,
-            borderRadius: '100%',
           }}
         >
           {isOpen ? (
             <BiMinusCircle
-              className={`h4 transition duration-500 text-gray-500 hover:${
+              className={`icon-auto transition duration-500 text-gray-500 hover:${
                 isDark ? 'text-white' : 'text-black'
               }`}
             />
           ) : (
             <BiPlusCircle
-              className={`h4 transition duration-500 text-gray-500 hover:${
+              className={`icon-auto transition duration-500 text-gray-500 hover:${
                 isDark ? 'text-white' : 'text-black'
               }`}
             />

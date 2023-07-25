@@ -24,7 +24,7 @@ export default function Cube({ isDark, ...props }: CubeProps) {
           }}
         >
           <FaCube
-            className={`h4 transition duration-500 text-gray-500 hover:${
+            className={`icon-auto transition duration-500 text-gray-500 hover:${
               isDark ? 'text-white' : 'text-black'
             }`}
           />
