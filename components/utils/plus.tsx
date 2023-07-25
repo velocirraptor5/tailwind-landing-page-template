@@ -1,23 +1,45 @@
-import { BiPlusCircle } from 'react-icons/bi';
+import { BiMinusCircle, BiPlusCircle } from 'react-icons/bi';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 interface CubeProps extends React.HTMLAttributes<HTMLAnchorElement> {
   isDark: boolean;
 }
 
 export default function Plus({ isDark, ...props }: CubeProps) {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="flex justify-center items-center ml-3 ">
       <a
         onClick={(e) => {
           e.preventDefault();
+          setIsOpen(!isOpen);
         }}
         {...props}
       >
-        <BiPlusCircle
-          className={`h4 transition duration-500 text-gray-500 hover:${
-            isDark ? 'text-white' : 'text-black'
-          }`}
-        />
+        <motion.button
+          className="flex justify-center items-center"
+          whileHover={{ scale: 1.2, rotate: 180 }}
+          whileTap={{
+            scale: 0.8,
+            rotate: -180,
+            borderRadius: '100%',
+          }}
+        >
+          {isOpen ? (
+            <BiMinusCircle
+              className={`h4 transition duration-500 text-gray-500 hover:${
+                isDark ? 'text-white' : 'text-black'
+              }`}
+            />
+          ) : (
+            <BiPlusCircle
+              className={`h4 transition duration-500 text-gray-500 hover:${
+                isDark ? 'text-white' : 'text-black'
+              }`}
+            />
+          )}
+        </motion.button>
       </a>
       {/* ghost elementes */}
       {/* es importante esta parte debido a que hay momentos en que el css no es carga adecuadamente en los condicionales de antes y esto fuerza a cargar todas las variantes */}

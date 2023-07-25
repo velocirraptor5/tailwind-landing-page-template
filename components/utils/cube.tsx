@@ -1,4 +1,5 @@
 import { FaCube } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 interface CubeProps extends React.HTMLAttributes<HTMLAnchorElement> {
   isDark: boolean;
@@ -13,11 +14,21 @@ export default function Cube({ isDark, ...props }: CubeProps) {
         }}
         {...props}
       >
-        <FaCube
-          className={`h4 transition duration-500 text-gray-500 hover:${
-            isDark ? 'text-white' : 'text-black'
-          }`}
-        />
+        <motion.button
+          className="flex justify-center items-center"
+          whileHover={{ scale: 1.2, rotate: 360 }}
+          whileTap={{
+            scale: 0.8,
+            rotate: -360,
+            borderRadius: '100%',
+          }}
+        >
+          <FaCube
+            className={`h4 transition duration-500 text-gray-500 hover:${
+              isDark ? 'text-white' : 'text-black'
+            }`}
+          />
+        </motion.button>
       </a>
       {/* ghost elementes */}
       {/* es importante esta parte debido a que hay momentos en que el css no es carga adecuadamente en los condicionales de antes y esto fuerza a cargar todas las variantes */}
