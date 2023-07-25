@@ -4,21 +4,23 @@ export const metadata = {
 };
 
 import Hero from '@/components/hero';
-import Features from '@/components/features';
 import FeaturesBlocks from '@/components/features-blocks';
 import Testimonials from '@/components/testimonials';
 import Newsletter from '@/components/newsletter';
 import { ColorProvider } from '@/contexts/MyContext';
+import ImageCreator from '@/components/imageCreator/main';
 
 export default function Home() {
   return (
     <>
       <ColorProvider>
-        <Hero />
-        <Features />
-        <FeaturesBlocks />
-        <Testimonials />
-        <Newsletter />
+        <div className="bg-wolfBg-900">
+          <Hero />
+          <ImageCreator />
+          <FeaturesBlocks />
+          <Testimonials />
+          <Newsletter />
+        </div>
       </ColorProvider>
     </>
   );
