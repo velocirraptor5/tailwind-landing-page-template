@@ -1,24 +1,22 @@
 import Cube from '@/components/utils/cube';
 import Plus from '@/components/utils/plus';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { BiAddToQueue, BiSearch, BiSolidChevronDown } from 'react-icons/bi';
 import { AnimatePresence, motion } from 'framer-motion';
 import Title from '@/components/utils/title';
+import { DarkBgContext } from '@/contexts/DarkBgContext';
 
 interface characterProps {
-  isDark: boolean;
   character: string;
   setCharacter: Dispatch<SetStateAction<string>>;
 }
 
-export default function Character({
-  isDark,
-  character,
-  setCharacter,
-}: characterProps) {
+export default function Character({ character, setCharacter }: characterProps) {
   const [isCharFocused, setCharFocused] = useState(false);
   const [charMenu, setCharMenu] = useState(false);
   const [charSearch, setCharSearch] = useState('');
+
+  const { isDark } = useContext(DarkBgContext);
 
   return (
     <div>
@@ -43,8 +41,8 @@ export default function Character({
             {/* Input */}
             <input
               type="text"
-              className={`text-xl bg-transparent w-full border-none transition duration-500 focus:ring-transparent
-                          ${isDark ? 'text-white' : ''}`}
+              className={`bg-transparent w-full border-none transition duration-500 focus:ring-transparent
+                          ${isDark ? 'text-white text-auto' : 'text-auto'}`}
               onFocus={() => setCharFocused(true)}
               onBlur={() => setCharFocused(false)}
               value={character}

@@ -7,7 +7,7 @@ import Hero from '@/components/hero';
 import FeaturesBlocks from '@/components/features-blocks';
 import Testimonials from '@/components/testimonials';
 import Newsletter from '@/components/newsletter';
-import { ColorProvider } from '@/contexts/MyContext';
+import { ColorProvider } from '@/contexts/ShirtColorContext';
 import ImageCreator from '@/components/imageCreator/main';
 
 export default function Home() {

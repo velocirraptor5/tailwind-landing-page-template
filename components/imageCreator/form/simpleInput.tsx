@@ -1,19 +1,19 @@
 import Cube from '@/components/utils/cube';
 import Title from '@/components/utils/title';
-import { Dispatch, SetStateAction } from 'react';
+import { DarkBgContext } from '@/contexts/DarkBgContext';
+import { Dispatch, SetStateAction, useContext } from 'react';
 
 interface InputProps {
   title: string;
-  isDark: boolean;
   atribute: string;
   setAtribute: Dispatch<SetStateAction<string>>;
 }
 export default function SimpleInput({
   title,
-  isDark,
   atribute,
   setAtribute,
 }: InputProps) {
+  const { isDark } = useContext(DarkBgContext);
   return (
     <div>
       {/* Title */}
@@ -24,8 +24,8 @@ export default function SimpleInput({
         <div>
           <input
             type="text"
-            className={`shadow-md border-2 rounded-lg text-xl bg-transparent w-full transition duration-500
-                        ${isDark ? 'text-white' : ''}
+            className={`shadow-md border-2 rounded-lg bg-transparent w-full transition duration-500
+                        ${isDark ? 'text-white text-auto' : 'text-auto'}
                         hover:${isDark ? 'border-white' : 'border-black'}
                         focus:ring-transparent
                         focus:${isDark ? 'border-white' : 'border-black'}

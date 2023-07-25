@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useContext } from 'react';
-import { MyContext } from '@/contexts/MyContext';
-import Form from './from';
+import { ShirtColorContext } from '@/contexts/ShirtColorContext';
+import Form from './form/main';
 import Images from './images';
+import { DarkBgContext, DarkBgProvider } from '@/contexts/DarkBgContext';
 
 export default function ImageCreator() {
-  const { shirtColor } = useContext(MyContext);
+  const { shirtColor } = useContext(ShirtColorContext);
 
   return (
     <section className="relative">
@@ -22,11 +23,13 @@ export default function ImageCreator() {
         >
           {/* Section Content */}
           <div className="mx-10 my-5 md:grid grid-cols-9 gap-4">
-            {/* Form */}
-            <Form />
+            <DarkBgProvider>
+              {/* Form */}
+              <Form />
 
-            {/* Images */}
-            <Images />
+              {/* Images */}
+              <Images />
+            </DarkBgProvider>
           </div>
         </div>
       </div>

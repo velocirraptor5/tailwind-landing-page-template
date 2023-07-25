@@ -1,16 +1,17 @@
 import Cube from '@/components/utils/cube';
 import Title from '@/components/utils/title';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { DarkBgContext } from '@/contexts/DarkBgContext';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { BiSolidChevronDown } from 'react-icons/bi';
 
 interface styleProps {
-  isDark: boolean;
   artStyle: string;
   setArtStyle: Dispatch<SetStateAction<string>>;
 }
 
-export default function Style({ isDark, artStyle, setArtStyle }: styleProps) {
+export default function Style({ artStyle, setArtStyle }: styleProps) {
   const [isArtFocused, setArtFocused] = useState(false);
+  const { isDark } = useContext(DarkBgContext);
 
   return (
     <div>
@@ -33,7 +34,7 @@ export default function Style({ isDark, artStyle, setArtStyle }: styleProps) {
           {/* Input */}
           <input
             type="text"
-            className={`text-xl bg-transparent w-full border-none transition duration-500 focus:ring-transparent
+            className={`text-auto bg-transparent w-full border-none transition duration-500 focus:ring-transparent
                     ${isDark ? 'text-white' : ''}`}
             onFocus={() => setArtFocused(true)}
             onBlur={() => setArtFocused(false)}

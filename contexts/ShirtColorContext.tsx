@@ -1,12 +1,12 @@
 'use client';
 import { createContext, useState } from 'react';
 
-interface MyContextProps {
+interface ShirtColorContextProps {
   shirtColor: string;
   setShirtColor: (color: string) => void;
 }
 
-export const MyContext = createContext<MyContextProps>({
+export const ShirtColorContext = createContext<ShirtColorContextProps>({
   shirtColor: 'white',
   setShirtColor: () => {},
 });
@@ -20,8 +20,8 @@ export const ColorProvider: React.FC<IColorProviderProps> = ({ children }) => {
   const [shirtColor, setShirtColor] = useState('white');
 
   return (
-    <MyContext.Provider value={{ shirtColor, setShirtColor }}>
+    <ShirtColorContext.Provider value={{ shirtColor, setShirtColor }}>
       {children}
-    </MyContext.Provider>
+    </ShirtColorContext.Provider>
   );
 };
