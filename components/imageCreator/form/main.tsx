@@ -7,7 +7,7 @@ import Style from './style';
 import FormButton from './button';
 
 export default function Form() {
-  const [character, setCharacter] = useState('Panda');
+  const [characters, setCharacters] = useState(['Panda', 'Ferrary']);
 
   const [action, setAction] = useState('Driving');
 
@@ -30,7 +30,7 @@ export default function Form() {
         </div>
         {/* Character */}
         <div className="mb-5">
-          <Character character={character} setCharacter={setCharacter} />
+          <Character characters={characters} setCharacters={setCharacters} />
         </div>
         {/* Action */}
         <div className="mb-5">
