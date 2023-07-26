@@ -4,19 +4,17 @@ import { useState } from 'react';
 
 interface CubeProps extends React.HTMLAttributes<HTMLAnchorElement> {
   isDark: boolean;
+  isPlus?: boolean;
 }
 
-export default function Plus({ isDark, ...props }: CubeProps) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function PlusMinus({
+  isDark,
+  isPlus = true,
+  ...props
+}: CubeProps) {
   return (
     <div className="flex justify-center items-center ml-3 ">
-      <a
-        onClick={(e) => {
-          e.preventDefault();
-          setIsOpen(!isOpen);
-        }}
-        {...props}
-      >
+      <a {...props}>
         <motion.button
           className="flex justify-center items-center"
           whileHover={{ scale: 1.2, rotate: 180 }}
@@ -25,14 +23,14 @@ export default function Plus({ isDark, ...props }: CubeProps) {
             rotate: -180,
           }}
         >
-          {isOpen ? (
-            <BiMinusCircle
+          {isPlus ? (
+            <BiPlusCircle
               className={`icon-auto transition duration-500 text-gray-500 hover:${
                 isDark ? 'text-white' : 'text-black'
               }`}
             />
           ) : (
-            <BiPlusCircle
+            <BiMinusCircle
               className={`icon-auto transition duration-500 text-gray-500 hover:${
                 isDark ? 'text-white' : 'text-black'
               }`}
