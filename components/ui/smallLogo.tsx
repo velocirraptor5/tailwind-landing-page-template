@@ -1,48 +1,18 @@
-import { motion, Variants } from 'framer-motion';
+import Link from 'next/link';
 
-export default function Logo({ visible = false }) {
-  const icon: Variants = {
-    hidden: {
-      pathLength: 0,
-      opacity: 0,
-      fill: 'rgba(255, 255, 255, 0)',
-      transition: {
-        duration: 8,
-        // delay: 15,
-      },
-    },
-    path: ([color, delay]) => ({
-      pathLength: 1,
-      transition: {
-        duration: 6,
-        // delay: delay,
-      },
-    }),
-    visible: ([color, delay]) => ({
-      opacity: [1, 0.2],
-      fill: color,
-      transition: {
-        duration: 8,
-        // delay: delay,
-      },
-    }),
-  };
+export default function SmallLogo({ dark = true }) {
   return (
-    <svg
-      height="100%"
-      width="100%"
-      xmlns="http://www.w3.org/2000/svg"
-      version="1.1"
-      viewBox="0 0 959 874"
-    >
-      <motion.path
-        custom={['#b1f1f3', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#b1f1f3"
-        strokeWidth="2"
-        d="M 757.91 434.94
+    <Link href="/" className="block" aria-label="Cruip">
+      <svg
+        height="100%"
+        width="100%"
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        viewBox="0 0 959 874"
+      >
+        <path
+          fill={dark ? '#b1f1f3' : '#38525b'}
+          d="M 757.91 434.94
   C 756.62 434.58 755.28 434.19 754.07 433.55
   Q 702.74 406.30 650.67 380.46
   Q 650.20 380.23 650.16 379.71
@@ -94,15 +64,10 @@ export default function Logo({ visible = false }) {
   C 755.66 442.12 757.50 438.19 758.20 435.44
   Q 758.31 435.05 757.91 434.94
   Z"
-      />
-      <motion.path
-        custom={['#aaeff1', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#aaeff1"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#aaeff1' : '#324852'}
+          d="
   M 658.72 439.95
   Q 662.95 433.99 669.87 434.96
   C 682.66 436.74 679.80 455.26 665.72 453.73
@@ -116,15 +81,10 @@ export default function Logo({ visible = false }) {
   Q 648.48 442.14 658.03 440.39
   Q 658.46 440.31 658.72 439.95
   Z"
-      />
-      <motion.path
-        custom={['#aaeff1', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#aaeff1"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#aaeff1' : '#324852'}
+          d="
   M 531.07 659.48
   Q 532.40 654.16 534.71 650.47
   C 549.78 626.38 562.61 600.95 574.45 575.13
@@ -156,15 +116,10 @@ export default function Logo({ visible = false }) {
   Q 525.18 634.80 530.78 659.48
   Q 530.92 660.07 531.07 659.48
   Z"
-      />
-      <motion.path
-        custom={['#a3edef', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#a3edef"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#a3edef' : '#2c3f49'}
+          d="
   M 582.78 382.37
   Q 582.24 381.73 581.45 382.00
   C 562.81 388.34 540.83 387.67 520.18 390.83
@@ -188,56 +143,36 @@ export default function Logo({ visible = false }) {
   Q 603.52 390.25 589.37 386.34
   C 586.63 385.58 584.47 384.40 582.78 382.37
   Z"
-      />
-      <motion.ellipse
-        custom={['#a3edef', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#a3edef"
-        strokeWidth="2"
-        cx="0.00"
-        cy="0.00"
-        transform="translate(552.30,411.47) rotate(97.3)"
-        rx="8.79"
-        ry="8.05"
-      />
-      <motion.rect
-        custom={['#a3edef', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#a3edef"
-        strokeWidth="2"
-        x="-0.43"
-        y="-25.72"
-        transform="translate(532.19,444.79) rotate(39.9)"
-        width="0.86"
-        height="51.44"
-        rx="0.26"
-      />
-      <motion.path
-        custom={['#a3edef', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#a3edef"
-        strokeWidth="2"
-        d="
+        />
+        <ellipse
+          fill={dark ? '#a3edef' : '#2c3f49'}
+          cx="0.00"
+          cy="0.00"
+          transform="translate(552.30,411.47) rotate(97.3)"
+          rx="8.79"
+          ry="8.05"
+        />
+        <rect
+          fill={dark ? '#a3edef' : '#2c3f49'}
+          x="-0.43"
+          y="-25.72"
+          transform="translate(532.19,444.79) rotate(39.9)"
+          width="0.86"
+          height="51.44"
+          rx="0.26"
+        />
+        <path
+          fill={dark ? '#a3edef' : '#2c3f49'}
+          d="
   M 608.50 453.74
   C 613.62 444.45 625.22 444.34 626.24 456.36
   C 627.26 468.30 610.12 468.32 607.83 458.02
   Q 607.34 455.83 608.50 453.74
   Z"
-      />
-      <motion.path
-        custom={['#9bebed', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#9bebed"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#9bebed' : '#26363f'}
+          d="
   M 605.84 454.58
   Q 606.26 454.59 606.25 455.02
   Q 606.25 455.16 606.25 455.29
@@ -251,15 +186,10 @@ export default function Logo({ visible = false }) {
   Q 558.26 459.46 596.28 455.03
   Q 600.66 454.52 605.84 454.58
   Z"
-      />
-      <motion.path
-        custom={['#9bebed', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#9bebed"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#9bebed' : '#26363f'}
+          d="
   M 442.40 663.67
   C 436.87 644.66 435.67 626.28 438.71 606.61
   Q 441.11 591.03 444.36 576.09
@@ -274,15 +204,10 @@ export default function Logo({ visible = false }) {
   C 426.52 644.91 433.27 656.82 442.06 663.90
   Q 442.59 664.32 442.40 663.67
   Z"
-      />
-      <motion.path
-        custom={['#94eaeb', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#94eaeb"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#94eaeb' : '#26363f'}
+          d="
   M 535.34 220.54
   Q 523.13 227.06 510.32 232.35
   C 493.19 239.42 476.11 246.88 458.74 253.35
@@ -319,15 +244,10 @@ export default function Logo({ visible = false }) {
   Q 535.27 224.66 535.84 220.90
   Q 535.95 220.22 535.34 220.54
   Z"
-      />
-      <motion.path
-        custom={['#94eaeb', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#94eaeb"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#94eaeb' : '#26363f'}
+          d="
   M 402.56 365.56
   Q 400.41 365.81 399.29 365.76
   Q 398.64 365.72 398.83 365.10
@@ -338,15 +258,10 @@ export default function Logo({ visible = false }) {
   C 447.76 361.50 437.80 361.82 436.52 361.88
   C 425.15 362.36 413.86 364.26 402.56 365.56
   Z"
-      />
-      <motion.path
-        custom={['#94eaeb', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#94eaeb"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#94eaeb' : '#26363f'}
+          d="
   M 411.49 455.75
   A 0.27 0.27 0.0 0 0 411.04 455.51
   C 404.92 460.93 397.88 466.30 392.58 471.43
@@ -393,15 +308,10 @@ export default function Logo({ visible = false }) {
   C 408.98 491.23 411.00 474.93 411.68 458.18
   C 411.71 457.44 411.38 456.63 411.49 455.75
   Z"
-      />
-      <motion.path
-        custom={['#8ce8e9', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#8ce8e9"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#8ce8e9' : '#202d36'}
+          d="
   M 396.32 676.40
   L 458.18 719.94
   A 0.33 0.32 -11.5 0 1 457.82 720.48
@@ -413,15 +323,10 @@ export default function Logo({ visible = false }) {
   C 377.10 658.76 401.23 659.07 396.13 675.83
   Q 396.02 676.19 396.32 676.40
   Z"
-      />
-      <motion.path
-        custom={['#7ce4e5', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#7ce4e5"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#7ce4e5' : '#1a242d'}
+          d="
   M 312.99 377.99
   C 312.70 379.55 312.02 386.16 310.78 386.81
   A 0.55 0.54 -11.0 0 1 309.98 386.28
@@ -448,42 +353,27 @@ export default function Logo({ visible = false }) {
   L 313.31 378.03
   Q 313.76 373.72 312.99 377.99
   Z"
-      />
-      <motion.rect
-        custom={['#7ce4e5', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#7ce4e5"
-        strokeWidth="2"
-        x="-0.51"
-        y="-27.12"
-        transform="translate(357.93,395.34) rotate(37.9)"
-        width="1.02"
-        height="54.24"
-        rx="0.28"
-      />
-      <motion.ellipse
-        custom={['#7ce4e5', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#7ce4e5"
-        strokeWidth="2"
-        cx="0.00"
-        cy="0.00"
-        transform="translate(341.40,428.84) rotate(-23.7)"
-        rx="9.41"
-        ry="8.66"
-      />
-      <motion.path
-        custom={['#73e2e3', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#73e2e3"
-        strokeWidth="2"
-        d="
+        />
+        <rect
+          fill={dark ? '#7ce4e5' : '#1a242d'}
+          x="-0.51"
+          y="-27.12"
+          transform="translate(357.93,395.34) rotate(37.9)"
+          width="1.02"
+          height="54.24"
+          rx="0.28"
+        />
+        <ellipse
+          fill={dark ? '#7ce4e5' : '#1a242d'}
+          cx="0.00"
+          cy="0.00"
+          transform="translate(341.40,428.84) rotate(-23.7)"
+          rx="9.41"
+          ry="8.66"
+        />
+        <path
+          fill={dark ? '#73e2e3' : '#141c24'}
+          d="
   M 255.75 420.56
   Q 275.93 392.08 304.43 372.13
   A 0.25 0.25 0.0 0 1 304.79 372.45
@@ -494,15 +384,10 @@ export default function Logo({ visible = false }) {
   Q 227.27 460.59 227.57 460.16
   Q 241.71 440.37 255.75 420.56
   Z"
-      />
-      <motion.path
-        custom={['#73e2e3', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#73e2e3"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#73e2e3' : '#141c24'}
+          d="
   M 254.49 558.53
   Q 253.97 558.60 253.86 558.08
   C 250.11 539.98 249.33 522.15 249.77 503.75
@@ -516,15 +401,10 @@ export default function Logo({ visible = false }) {
   Q 257.10 558.17 256.48 558.25
   L 254.49 558.53
   Z"
-      />
-      <motion.path
-        custom={['#73e2e3', 0]}
-        variants={icon}
-        initial="hidden"
-        animate={visible ? 'hidden' : ['visible', 'path']}
-        stroke="#73e2e3"
-        strokeWidth="2"
-        d="
+        />
+        <path
+          fill={dark ? '#73e2e3' : '#141c24'}
+          d="
   M 215.49 646.37
   Q 214.87 646.10 214.74 645.50
   C 211.88 632.34 208.62 620.55 207.69 605.93
@@ -538,7 +418,8 @@ export default function Logo({ visible = false }) {
   Q 216.79 638.73 216.46 645.76
   A 0.70 0.70 0.0 0 1 215.49 646.37
   Z"
-      />
-    </svg>
+        />
+      </svg>
+    </Link>
   );
 }
