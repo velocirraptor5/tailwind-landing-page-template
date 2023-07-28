@@ -45,9 +45,9 @@ export default function Character({
               <div className="flex flex-row">
                 {/* Input and DropMenuIcon */}
                 <div
-                  className={`flex flex-row shadow-md border-2 rounded-lg transition duration-500${
-                    isDark ? 'text-white' : ''
-                  } hover:${isDark ? 'border-white' : 'border-black '}  ${
+                  className={`flex flex-row shadow-md border-2 rounded-lg transition duration-500 hover:${
+                    isDark ? 'border-white' : 'border-black '
+                  }  ${
                     isCharFocused
                       ? isDark
                         ? 'border-white'
@@ -58,8 +58,15 @@ export default function Character({
                   {/* Input */}
                   <input
                     type="text"
-                    className={`bg-transparent w-full border-none transition duration-500 focus:ring-transparent
-                          ${isDark ? 'text-white text-auto' : 'text-auto'}`}
+                    className={`bg-transparent w-full border-none transition duration-500 focus:ring-transparent text-auto  hover:${
+                      isDark ? 'text-white' : 'text-black'
+                    } ${
+                      isCharFocused
+                        ? isDark
+                          ? 'text-white'
+                          : 'text-black'
+                        : 'text-gray-600'
+                    }`}
                     onFocus={() => setCharFocused(index)}
                     onBlur={() => setCharFocused(undefined)}
                     value={character}
@@ -177,35 +184,26 @@ export default function Character({
                     animate={{ height: 'auto' }}
                     exit={{ height: 0 }}
                     transition={{ duration: 1 }}
-                    className={`shadow-md border-2 rounded-lg transition duration-500 overflow-hidden ${
-                      isDark ? 'text-white' : ''
-                    } hover:${isDark ? 'border-white' : 'border-black '}  ${
-                      isCharFocused
-                        ? isDark
-                          ? 'border-white'
-                          : 'border-black'
-                        : 'border-gray-500'
-                    }`}
+                    className={`shadow-md border-2 rounded-lg transition duration-500 overflow-hidden border-gray-500 hover:${
+                      isDark ? 'border-white' : 'border-black '
+                    }  `}
                   >
                     {/* Input and SearchIcon */}
                     <div
                       className={`flex m-3 shadow-md border-2 rounded-lg transition duration-500 ${
                         isDark ? 'text-white' : ''
-                      } hover:${isDark ? 'border-white' : 'border-black '}  ${
-                        isCharFocused
-                          ? isDark
-                            ? 'border-white'
-                            : 'border-black'
-                          : 'border-gray-500'
+                      } border-gray-500 hover:${
+                        isDark ? 'border-white' : 'border-black '
                       }`}
                     >
                       {/* Input */}
                       <input
                         type="text"
-                        className={`text-auto bg-transparent w-full border-none transition duration-500 focus:ring-transparent
-                          ${isDark ? 'text-white' : ''}`}
-                        onFocus={() => setCharFocused(index)}
-                        onBlur={() => setCharFocused(undefined)}
+                        className={`text-auto bg-transparent w-full border-none transition duration-500 focus:ring-transparent text-gray-600 hover:${
+                          isDark ? 'text-white' : 'text-black'
+                        }`}
+                        // onFocus={() => setCharFocused(index)}
+                        // onBlur={() => setCharFocused(undefined)}
                         value={charsSearch[index]}
                         onChange={(e) => {
                           newCharactersSearchs.splice(index, 1, e.target.value);
@@ -228,7 +226,7 @@ export default function Character({
                         </a>
                       </div>
                     </div>
-                    {/* Insert image */}
+                    {/* Insert image and images */}
                     <div className="grid grid-cols-2 ">
                       <a
                         className={`mb-3 mx-3 flex justify-center items-center border-2 border-dotted aspect-square transition duration-500 text-gray-500 ${
@@ -237,13 +235,7 @@ export default function Character({
                           isDark
                             ? 'border-white text-white'
                             : 'border-black text-black'
-                        }  ${
-                          isCharFocused
-                            ? isDark
-                              ? 'border-white'
-                              : 'border-black'
-                            : 'border-gray-500'
-                        }`}
+                        } border-gray-500`}
                         onClick={(e) => {
                           e.preventDefault();
                         }}
@@ -254,13 +246,9 @@ export default function Character({
                         />
                       </a>
                       <div
-                        className={`mb-3 mx-3 border-2 transition duration-500 ${
-                          isCharFocused
-                            ? isDark
-                              ? 'border-white'
-                              : 'border-black'
-                            : 'border-gray-500'
-                        } hover:${isDark ? 'border-white' : 'border-black'} `}
+                        className={`mb-3 mx-3 border-2 transition duration-500 border-gray-500 hover:${
+                          isDark ? 'border-white' : 'border-black'
+                        } `}
                       >
                         b
                       </div>
