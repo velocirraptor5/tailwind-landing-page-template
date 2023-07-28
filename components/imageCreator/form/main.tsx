@@ -13,7 +13,16 @@ export default function Form() {
 
   const [landscape, setLandscape] = useState('');
 
-  const [artStyle, setArtStyle] = useState('Digital Art');
+  const [artStyles, setArtStyles] = useState([
+    'Digital Art',
+    'Digital Art',
+    'Pixels',
+    'Van Goh',
+    'Realistic',
+    'Lego',
+    'Water color',
+    'Abstract',
+  ]);
 
   return (
     <div
@@ -50,7 +59,7 @@ export default function Form() {
         </div>
         {/* Art stile */}
         <div className="mb-5">
-          <Style artStyle={artStyle} setArtStyle={setArtStyle} />
+          <Style artStyles={artStyles} setArtStyles={setArtStyles} />
         </div>
       </div>
       {/* generate button */}
