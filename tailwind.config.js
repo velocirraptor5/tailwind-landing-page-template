@@ -42,14 +42,14 @@ module.exports = {
           900: '#234E52',
         },
         wolfBg: {
-          100: '#fcfeff',
-          200: '#dbdee0',
-          300: '#babfc2',
-          400: '#9ba1a5',
-          500: '#7d8489',
-          600: '#61686e',
-          700: '#454d54',
-          800: '#2c343b',
+          100: '#46666d',
+          200: '#3f5c64',
+          300: '#38525b',
+          400: '#324852',
+          500: '#2c3f49',
+          600: '#26363f',
+          700: '#202d36',
+          800: '#1a242d',
           900: '#141c24',
         },
         wolfTeal: {
@@ -160,6 +160,11 @@ module.exports = {
         '-1': '-1',
       },
     },
+    fontFamily: {
+      ppixie: ['Procrastinating Pixie'],
+      madsense: ['MadsenseFreeTrial'],
+      varino: ['Varino']
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
