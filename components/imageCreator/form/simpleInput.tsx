@@ -26,11 +26,11 @@ export default function SimpleInput({
           <input
             type="text"
             className={`shadow-md border-2 rounded-lg bg-transparent w-full transition duration-500 text-auto  hover:${
-              isDark ? 'border-white' : 'border-black'
+              isDark ? 'border-wolfTeal-900' : 'border-black'
             } hover:${isDark ? 'text-white' : 'text-black'} ${
               focus ? (isDark ? 'text-white' : 'text-black') : 'text-gray-600'
             } focus:ring-transparent focus:${
-              isDark ? 'border-white' : 'border-black'
+              isDark ? 'border-wolfTeal-900' : 'border-black'
             }`}
             value={atribute}
             onChange={(e) => setAtribute(e.target.value)}
@@ -40,6 +40,7 @@ export default function SimpleInput({
         </div>
         <Cube isDark={isDark} />
       </div>
+      <input hidden={true} className="focus:border-wolfTeal-900"></input>
     </div>
   );
 }

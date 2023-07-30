@@ -14,16 +14,19 @@ export default function FormButton() {
   return (
     <div>
       <Button
-        className={`btn mb-5  ${
-          isDark
-            ? 'text-black bg-white  hover:bg-slate-200 '
-            : 'text-white bg-wolfBg-900  hover:bg-wolfBg-700 '
-        }`}
+        className={`icon-auto font-varino font-bold ${
+          isDark ? 'text-wolfTeal-900' : 'text-black'
+        } border-2 ${isDark ? 'border-wolfTeal-900' : 'border-black'}`}
+        // className={`btn mb-5  ${
+        //   isDark
+        //     ? 'text-black bg-white  hover:bg-slate-200 '
+        //     : 'text-white bg-wolfBg-900  hover:bg-wolfBg-700 '
+        // }`}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseOut={handleMouseUp}
       >
-        <p className="text-auto">crear</p>
+        <p className="icon-auto mx-5">crear</p>
       </Button>
     </div>
   );

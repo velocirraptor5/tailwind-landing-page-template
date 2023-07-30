@@ -26,13 +26,13 @@ export default function PlusMinus({
           {isPlus ? (
             <BiPlusCircle
               className={`icon-auto transition duration-500 text-gray-500 hover:${
-                isDark ? 'text-white' : 'text-black'
+                isDark ? 'text-wolfTeal-900' : 'text-black'
               }`}
             />
           ) : (
             <BiMinusCircle
               className={`icon-auto transition duration-500 text-gray-500 hover:${
-                isDark ? 'text-white' : 'text-black'
+                isDark ? 'text-wolfTeal-900' : 'text-black'
               }`}
             />
           )}

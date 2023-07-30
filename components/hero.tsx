@@ -11,7 +11,7 @@ import Logo from '@/public/images/Logo';
 export default function Hero() {
   const [visible, setVisible] = useState(false);
   const [logoVisible, setLogoVisible] = useState(false);
-  const [slogan, setSlogan] = useState(true);
+  const [slogan, setSlogan] = useState(false);
 
   const handleScrollDownClick = () => {
     window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -51,14 +51,12 @@ export default function Hero() {
               className="font-madsense  xl:text-9xl lg:text-8xl md:text-7xl text-6xl bg-clip-text text-transparent bg-gradient-to-r from-wolfTeal-900 to-white"
               onAnimationComplete={() => {
                 if (!visible) {
-                  setSlogan(false);
+                  setSlogan(true);
+                  setLogoVisible(!visible);
                   setTimeout(() => {
-                    setLogoVisible(!visible);
-                    setTimeout(() => {
-                      setVisible(!visible);
-                      setSlogan(true);
-                    }, 7000);
-                  }, 10000);
+                    setVisible(!visible);
+                    setSlogan(false);
+                  }, 17000);
                 } else {
                   // setSlogan(true);
                   setVisible(!visible);
@@ -80,7 +78,7 @@ export default function Hero() {
               El futuro es nuestro lienzo
             </motion.div>
 
-            {!slogan && (
+            {slogan && (
               <motion.div
                 key={'Continue'}
                 initial={{
@@ -114,7 +112,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.button
-        className="scroll-down-icon w-12 h-12 animate-bounce text-wolfTeal-900"
+        className="scroll-down-icon text-lg w-16 h-16 animate-bounce text-wolfTeal-900"
         animate={{ y: [0, 10] }}
         transition={{ repeat: Infinity, duration: 1 }}
         style={{

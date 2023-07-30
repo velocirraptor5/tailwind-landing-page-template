@@ -6,6 +6,7 @@ import Link from 'next/link';
 import SmallLogo from './smallLogo';
 import Dropdown from '@/components/utils/dropdown';
 import MobileMenu from './mobile-menu';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Header() {
   const [top, setTop] = useState<boolean>(true);
@@ -30,9 +31,45 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Site branding */}
-          <div className={`shrink-0 mr-4 rounded-full w-20 h-20 `}>
-            <SmallLogo />
-          </div>
+          <AnimatePresence>
+            {!top ? (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  height: 0,
+                  marginTop: 0,
+                  marginBottom: 0,
+                  y: 10,
+                }}
+                animate={{
+                  opacity: 1,
+                  height: 'auto',
+                  transition: { duration: 1 },
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
+                  y: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  height: 0,
+                  transition: { duration: 1 },
+                  marginTop: 0,
+                  y: 0,
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{
+                  scale: 0.8,
+                }}
+                // className={`shrink-0 mr-4 rounded-full w-20 h-20 `}
+                className={`font-madsense icon-auto bg-clip-text text-transparent bg-gradient-to-r from-wolfTeal-900 to-white`}
+              >
+                Wolf DI
+                {/* <SmallLogo /> */}
+              </motion.div>
+            ) : (
+              <div></div>
+            )}
+          </AnimatePresence>
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex md:grow">

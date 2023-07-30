@@ -46,11 +46,11 @@ export default function Character({
                 {/* Input and DropMenuIcon */}
                 <div
                   className={`flex flex-row shadow-md border-2 rounded-lg transition duration-500 hover:${
-                    isDark ? 'border-white' : 'border-black '
+                    isDark ? 'border-wolfTeal-900' : 'border-black '
                   }  ${
                     isCharFocused
                       ? isDark
-                        ? 'border-white'
+                        ? 'border-wolfTeal-900'
                         : 'border-black'
                       : 'border-gray-500'
                   } ${charMenu ? 'border-b-0' : ''}`}
@@ -185,7 +185,7 @@ export default function Character({
                     exit={{ height: 0 }}
                     transition={{ duration: 1 }}
                     className={`shadow-md border-2 rounded-lg transition duration-500 overflow-hidden border-gray-500 hover:${
-                      isDark ? 'border-white' : 'border-black '
+                      isDark ? 'border-wolfTeal-900' : 'border-black '
                     }  `}
                   >
                     {/* Input and SearchIcon */}
@@ -193,7 +193,7 @@ export default function Character({
                       className={`flex m-3 shadow-md border-2 rounded-lg transition duration-500 ${
                         isDark ? 'text-white' : ''
                       } border-gray-500 hover:${
-                        isDark ? 'border-white' : 'border-black '
+                        isDark ? 'border-wolfTeal-900' : 'border-black '
                       }`}
                     >
                       {/* Input */}
@@ -233,7 +233,7 @@ export default function Character({
                           isDark ? 'bg-gray-700' : 'bg-gray-200'
                         } hover:${
                           isDark
-                            ? 'border-white text-white'
+                            ? 'border-wolfTeal-900 text-white'
                             : 'border-black text-black'
                         } border-gray-500`}
                         onClick={(e) => {
@@ -247,7 +247,7 @@ export default function Character({
                       </a>
                       <div
                         className={`mb-3 mx-3 border-2 transition duration-500 border-gray-500 hover:${
-                          isDark ? 'border-white' : 'border-black'
+                          isDark ? 'border-wolfTeal-900' : 'border-black'
                         } `}
                       >
                         b

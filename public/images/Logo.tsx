@@ -7,7 +7,7 @@ export default function Logo({ visible = false }) {
       opacity: 0,
       fill: 'rgba(255, 255, 255, 0)',
       transition: {
-        duration: 8,
+        duration: 5,
         // delay: 15,
       },
     },
