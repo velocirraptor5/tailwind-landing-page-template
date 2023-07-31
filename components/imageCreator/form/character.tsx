@@ -21,7 +21,10 @@ export default function Character({
   const [charsSearch, setCharSearch] = useState(characters);
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+    >
       {/* Title */}
       <Title text="Personaje u Objeto" isDark={isDark} />
       {/* Character N */}
@@ -260,6 +263,6 @@ export default function Character({
           );
         })}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

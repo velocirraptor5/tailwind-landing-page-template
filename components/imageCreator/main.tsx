@@ -4,6 +4,8 @@ import { useState, useContext } from 'react';
 import { ShirtColorContext } from '@/contexts/ShirtColorContext';
 import Form from './form/main';
 import Images from './images';
+import { motion } from 'framer-motion';
+
 import { DarkBgContext, DarkBgProvider } from '@/contexts/DarkBgContext';
 
 export default function ImageCreator() {
@@ -12,7 +14,9 @@ export default function ImageCreator() {
   return (
     <section className="relative">
       <div className={`mx-auto px-4 sm:px-6 my-16`}>
-        <div
+        <motion.div
+          initial={{ opacity: 0.5 }}
+          whileInView={{ opacity: 1 }}
           className={`rounded-lg shadow-lg shadow-wolfTeal-900 transition duration-500 
             ${
               ['white', 'black'].includes(shirtColor)
@@ -31,7 +35,7 @@ export default function ImageCreator() {
               <Images />
             </DarkBgProvider>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

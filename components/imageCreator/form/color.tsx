@@ -3,13 +3,18 @@ import Title from '@/components/utils/title';
 import { DarkBgContext } from '@/contexts/DarkBgContext';
 import { ShirtColorContext } from '@/contexts/ShirtColorContext';
 import { useContext } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Color() {
   const { setShirtColor } = useContext(ShirtColorContext);
   const { setIsDark, isDark } = useContext(DarkBgContext);
 
   return (
-    <div className="grid grid-cols-2 transition duration-500">
+    <motion.div
+      className="grid grid-cols-2 transition duration-500"
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+    >
       {/* Title and buttons */}
       <div>
         {/* Title */}
@@ -37,6 +42,6 @@ export default function Color() {
       </div>
       {/* Cubes */}
       <Cubes isDark={isDark} />
-    </div>
+    </motion.div>
   );
 }

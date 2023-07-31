@@ -47,9 +47,11 @@ export default function Images() {
   return (
     <div className="col-span-6 flex justify-center my-10" data-aos="fade-left">
       <div className="flex flex-col justify-center overflow-hidden">
-        <div
+        <motion.div
           className="overflow-hidden mb-5 aspect-square transition duration-500"
           style={{ width: mainImageSize }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
         >
           {images.map((image) => (
             <AnimatePresence key={image.id}>
@@ -78,8 +80,12 @@ export default function Images() {
               )}
             </AnimatePresence>
           ))}
-        </div>
-        <div className="flex align-middle justify-center">
+        </motion.div>
+        <motion.div
+          className="flex align-middle justify-center"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+        >
           {images.map((image) => (
             <AnimatePresence key={image.id}>
               {selectedImage.id !== image.id && (
@@ -91,13 +97,14 @@ export default function Images() {
                   transition={{ duration: 1 }}
                   onClick={() => setSelectedImage(image)}
                   src={image.src}
+                  className="cursor-pointer"
                   alt="selecciona para recargar la imagen"
                 />
               )}
             </AnimatePresence>
             // </button>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

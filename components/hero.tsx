@@ -40,7 +40,7 @@ export default function Hero() {
         {/* <Image src={'/images/WolfId (1).svg'} fill={true} alt="logo" /> */}
         <Logo visible={logoVisible} />
       </div>
-      <div className="flex flex-col text-center justify-center items-center w-screen h-screen">
+      <div className="flex flex-col text-center justify-center items-center w-screen h-screen overflow-hidden">
         {/* Hero content */}
         <motion.div className="flex-col z-10 transition duration-500">
           <AnimatePresence>
@@ -112,7 +112,7 @@ export default function Hero() {
         </motion.div>
       </div>
       <motion.button
-        className="scroll-down-icon text-lg w-16 h-16 animate-bounce text-wolfTeal-900"
+        className="scroll-down-icon text-lg w-16 h-16 animate-bounce z-10 text-wolfTeal-900"
         animate={{ y: [0, 10] }}
         transition={{ repeat: Infinity, duration: 1 }}
         style={{

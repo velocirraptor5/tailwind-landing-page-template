@@ -1,16 +1,9 @@
 import Cube from '@/components/utils/cube';
 import Title from '@/components/utils/title';
 import { DarkBgContext } from '@/contexts/DarkBgContext';
-import {
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { BiSolidChevronDown } from 'react-icons/bi';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
-import { objectType } from '@material-tailwind/react/types/components/checkbox';
 
 interface styleProps {
   artStyles: string[];
@@ -48,15 +41,14 @@ export default function Style({ artStyles, setArtStyles }: styleProps) {
       marginTop: 5,
     },
   };
-  // const subItem: Variants = {
-  //   hidden: { marginLeft: 0 },
-  //   // visible: { marginLeft: 'auto' },
-  // };
 
   const newArtStyle = [...artStyles];
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+    >
       {/* Title */}
       <Title text="Estilo" isDark={isDark} />
       {/* Form */}
@@ -160,6 +152,6 @@ export default function Style({ artStyles, setArtStyles }: styleProps) {
       <div className="hidden">
         <input className="hover:border-wolfTeal-900"></input>
       </div>
-    </div>
+    </motion.div>
   );
 }

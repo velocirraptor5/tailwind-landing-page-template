@@ -2,6 +2,7 @@ import Cube from '@/components/utils/cube';
 import Title from '@/components/utils/title';
 import { DarkBgContext } from '@/contexts/DarkBgContext';
 import { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { motion } from 'framer-motion';
 
 interface InputProps {
   title: string;
@@ -16,7 +17,10 @@ export default function SimpleInput({
   const { isDark } = useContext(DarkBgContext);
   const [focus, setFocus] = useState(false);
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+    >
       {/* Title */}
       <Title text={title} isDark={isDark} />
       {/* Form */}
@@ -41,6 +45,6 @@ export default function SimpleInput({
         <Cube isDark={isDark} />
       </div>
       <input hidden={true} className="focus:border-wolfTeal-900"></input>
-    </div>
+    </motion.div>
   );
 }

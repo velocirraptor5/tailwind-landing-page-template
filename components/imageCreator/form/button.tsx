@@ -1,6 +1,7 @@
 import { DarkBgContext } from '@/contexts/DarkBgContext';
 import { Button } from '@material-tailwind/react';
 import { MouseEvent, useContext } from 'react';
+import { motion } from 'framer-motion';
 
 export default function FormButton() {
   const { isDark } = useContext(DarkBgContext);
@@ -12,7 +13,10 @@ export default function FormButton() {
     event.currentTarget.classList.remove('scale-90');
   };
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1, transition: { duration: 1 } }}
+    >
       <Button
         className={`icon-auto font-varino font-bold ${
           isDark ? 'text-wolfTeal-900' : 'text-black'
@@ -28,6 +32,6 @@ export default function FormButton() {
       >
         <p className="icon-auto mx-5">crear</p>
       </Button>
-    </div>
+    </motion.div>
   );
 }
