@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import SmallLogo from './smallLogo';
 
 export default function Footer() {
@@ -142,14 +143,12 @@ export default function Footer() {
                   About us
                 </a>
               </li>
-              <li className="mb-2">
-                <a
-                  href="#0"
-                  className="text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out"
-                >
-                  Company values
-                </a>
-              </li>
+              <Link
+                href="/contacts"
+                className="mb-2 text-gray-600 hover:text-gray-900 transition duration-150 ease-in-out"
+              >
+                Contacto
+              </Link>
               <li className="mb-2">
                 <a
                   href="#0"
