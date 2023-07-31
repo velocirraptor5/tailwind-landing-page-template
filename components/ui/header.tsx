@@ -1,19 +1,23 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import Link from 'next/link';
 import SmallLogo from './smallLogo';
 import Dropdown from '@/components/utils/dropdown';
 import MobileMenu from './mobile-menu';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 
-export default function Header() {
-  const [top, setTop] = useState<boolean>(true);
+interface headerProps {
+  mainPage?: boolean;
+}
+
+export default function Header({ mainPage = false }: headerProps) {
+  const [top, setTop] = useState<boolean>(false);
 
   // detect whether user has scrolled the page down by 10px
   const scrollHandler = () => {
-    window.pageYOffset > 10 ? setTop(false) : setTop(true);
+    window.scrollY > 10 ? setTop(false) : setTop(true);
   };
 
   useEffect(() => {
@@ -22,54 +26,68 @@ export default function Header() {
     return () => window.removeEventListener('scroll', scrollHandler);
   }, [top]);
 
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <header
-      className={`fixed w-full z-30 md:bg-opacity-80 transition duration-300 ease-in-out ${
-        !top ? 'bg-wolfBg-900 backdrop-blur-sm shadow-lg' : ''
+      className={`fixed w-full z-30 md:bg-opacity-80 transition duration-500 ease-in-out ${
+        top ? '' : 'bg-wolfBg-900 backdrop-blur-sm shadow-lg'
       }`}
     >
+      <motion.div className="h-2 bg-wolfTeal-900" style={{ scaleX }} />
       <div className="max-w-6xl mx-auto px-5 sm:px-6">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Site branding */}
-          <AnimatePresence>
-            {!top ? (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  height: 0,
-                  marginTop: 0,
-                  marginBottom: 0,
-                  y: 10,
-                }}
-                animate={{
-                  opacity: 1,
-                  height: 'auto',
-                  transition: { duration: 1 },
-                  marginTop: 'auto',
-                  marginBottom: 'auto',
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  height: 0,
-                  transition: { duration: 1 },
-                  marginTop: 0,
-                  y: 0,
-                }}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{
-                  scale: 0.8,
-                }}
-                // className={`shrink-0 mr-4 rounded-full w-20 h-20 `}
-                className={`font-madsense icon-auto bg-clip-text text-transparent bg-gradient-to-r from-wolfTeal-900 to-white`}
-              >
-                Wolf DI
-                {/* <SmallLogo /> */}
-              </motion.div>
-            ) : (
-              <div></div>
-            )}
-          </AnimatePresence>
+          {mainPage && (
+            <AnimatePresence>
+              {!top && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    height: 0,
+                    marginTop: 0,
+                    marginBottom: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    height: 'auto',
+                    transition: { duration: 1 },
+                    marginTop: 'auto',
+                    marginBottom: 'auto',
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    height: 0,
+                    transition: { duration: 1 },
+                    marginTop: 0,
+                    y: 10,
+                  }}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{
+                    scale: 0.8,
+                  }}
+                  // className={`shrink-0 mr-4 rounded-full w-20 h-20 `}
+                  className={`font-madsense cursor-pointer icon-auto bg-clip-text text-transparent bg-gradient-to-r from-wolfTeal-900 to-white`}
+                >
+                  <Link href="">Wolf DI</Link>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          )}
+          {!mainPage && (
+            <div
+              className={`font-madsense cursor-pointer icon-auto bg-clip-text text-transparent bg-gradient-to-r from-wolfTeal-900 to-white`}
+            >
+              <Link href="">Wolf DI</Link>
+            </div>
+          )}
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex md:grow">
@@ -78,7 +96,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/signin"
-                  className="font-medium text-gray-600 hover:text-gray-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
+                  className="font-medium  text-gray-600 hover:text-wolfTeal-900 px-5 py-3 flex items-center transition duration-150 ease-in-out"
                 >
                   Sign in
                 </Link>
