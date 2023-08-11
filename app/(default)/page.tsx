@@ -4,7 +4,7 @@ export const metadata = {
 };
 
 import Hero from '@/components/hero';
-import FeaturesBlocks from '@/components/features-blocks';
+import ShirtPreview from '@/components/shirtPreview';
 import Testimonials from '@/components/testimonials';
 import Newsletter from '@/components/newsletter';
 import { ColorProvider } from '@/contexts/ShirtColorContext';
@@ -14,13 +14,11 @@ export default function Home() {
   return (
     <>
       <ColorProvider>
-        <div className="bg-wolfBg-900">
-          <Hero />
-          <ImageCreator />
-          <FeaturesBlocks />
-          <Testimonials />
-          <Newsletter />
-        </div>
+        <Hero />
+        <ImageCreator />
+        <ShirtPreview />
+        <Testimonials />
+        <Newsletter />
       </ColorProvider>
     </>
   );
