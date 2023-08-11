@@ -4,6 +4,7 @@ import { DarkBgContext } from '@/contexts/DarkBgContext';
 import { ShirtColorContext } from '@/contexts/ShirtColorContext';
 import { useContext } from 'react';
 import { motion } from 'framer-motion';
+import ShirtSVG from '@/components/ui/ShirtSVG';
 
 export default function Color() {
   const { setShirtColor } = useContext(ShirtColorContext);
@@ -19,8 +20,35 @@ export default function Color() {
       <div>
         {/* Title */}
         <Title text="Color" isDark={isDark} />
-        {/* Black button */}
-        <button
+        <div className="flex">
+          <motion.div
+            className="xl:w-12 lg:w-10 md:w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              // heightFix();
+              setShirtColor('black');
+              setIsDark(true);
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ShirtSVG color="black" isDark={true} />
+          </motion.div>
+          <motion.div
+            className="xl:w-12 lg:w-10 md:w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
+            onClick={(e) => {
+              e.preventDefault();
+              // heightFix();
+              setShirtColor('white');
+              setIsDark(false);
+            }}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <ShirtSVG color="white" isDark={false} />
+          </motion.div>
+        </div>
+        {/* <button
           className="w-6 h-6 rounded-full bg-black mr-2 shadow-md border border-white hover:bg-gray-800"
           onClick={(e) => {
             e.preventDefault();
@@ -29,7 +57,6 @@ export default function Color() {
             setIsDark(true);
           }}
         />
-        {/* White button */}
         <button
           className="w-6 h-6 rounded-full bg-white shadow-md border border-black hover:bg-slate-100"
           onClick={(e) => {
@@ -38,7 +65,7 @@ export default function Color() {
             setShirtColor('white');
             setIsDark(false);
           }}
-        />
+        /> */}
       </div>
       {/* Cubes */}
       <Cubes isDark={isDark} />
