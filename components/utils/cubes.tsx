@@ -28,7 +28,7 @@ export default function Cubes({ isDark, ...props }: CubeProps) {
         >
           <FaCubes
             className={`xl:text-4xl lg:text-3xl md:text-2xl text-xl transition duration-500 text-gray-500 hover:${
-              isDark ? 'text-white' : 'text-black'
+              isDark ? 'text-wolfTeal-900' : 'text-black'
             }`}
           />
         </motion.button>
