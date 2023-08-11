@@ -23,12 +23,12 @@ export default function DefaultLayout({
   });
 
   return (
-    <>
+    <div className="bg-wolfBg-900">
       <Header mainPage={true} />
 
       <main className="grow">{children}</main>
 
       <Footer />
-    </>
+    </div>
   );
 }
