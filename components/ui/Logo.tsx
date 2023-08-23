@@ -1,6 +1,6 @@
 import { motion, Variants } from 'framer-motion';
 
-export default function Logo({ visible = false }) {
+export default function Logo({ visible = false, opacity = '' }) {
   const icon: Variants = {
     hidden: {
       pathLength: 0,
@@ -34,6 +34,7 @@ export default function Logo({ visible = false }) {
       xmlns="http://www.w3.org/2000/svg"
       version="1.1"
       viewBox="0 0 959 874"
+      className={opacity ? `opacity-${opacity}` : ''}
     >
       <motion.path
         custom={['#b1f1f3', 0]}
