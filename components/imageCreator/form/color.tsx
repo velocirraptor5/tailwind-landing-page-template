@@ -22,7 +22,7 @@ export default function Color() {
         <Title text="Color" isDark={isDark} />
         <div className="flex">
           <motion.div
-            className="xl:w-12 lg:w-10 md:w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
+            className="xl:w-12 lg:w-10 md:w-6 w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               // heightFix();
@@ -35,7 +35,7 @@ export default function Color() {
             <ShirtSVG color="black" isDark={true} />
           </motion.div>
           <motion.div
-            className="xl:w-12 lg:w-10 md:w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
+            className="xl:w-12 lg:w-10 md:w-6 w-6 aspect-square mr-2 rounded-md hover:bg-gradient-to-br from-wolfTeal-900 to-transparent cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               // heightFix();
