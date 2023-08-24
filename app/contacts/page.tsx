@@ -39,7 +39,7 @@ export default function Contacts() {
       <div className="absolute w-screen h-screen z-0" data-aos="zoom-y-out">
         <Logo opacity="30" />
       </div>
-      <div className=" relative flex flex-col justify-evenly z-10">
+      <div className=" relative flex flex-col justify-evenly z-10 bg-wolfBg-900 bg-opacity-70">
         {/* Title */}
         <div className="text-center m-10">
           <div className="title-auto font-varino font-bold text-wolfTeal-900">
